@@ -1,0 +1,50 @@
+<div class="pokemon-container">
+  <h1>Pokédex</h1>
+  
+  <div *ngIf="loading" class="loading">
+    <p>Cargando Pokémon...</p>
+  </div>
+
+  <div *ngIf="error" class="error">
+    <p>{{ error }}</p>
+    <button (click)="loadPokemon()" class="retry-btn">Reintentar</button>
+  </div>
+
+  <div *ngIf="!loading && !error" class="pokemon-grid">
+    <div *ngFor="let pokemon of pokemonList" class="pokemon-card">
+      <div class="pokemon-header">
+        <h3>{{ capitalize(pokemon.name) }}</h3>
+        <span class="pokemon-id">#{{ pokemon.id.toString().padStart(3, '0') }}</span>
+      </div>
+      
+      <div class="pokemon-image">
+        <img [src]="pokemon.sprites.front_default" [alt]="pokemon.name" />
+      </div>
+
+      <div class="pokemon-info">
+        <div class="pokemon-stats">
+          <p><strong>Altura:</strong> {{ pokemon.height / 10 }} m</p>
+          <p><strong>Peso:</strong> {{ pokemon.weight / 10 }} kg</p>
+        </div>
+
+        <div class="pokemon-types">
+          <span 
+            *ngFor="let type of pokemon.types" 
+            class="type-badge"
+            [style.background-color]="getPokemonTypeColor(type.type.name)">
+            {{ capitalize(type.type.name) }}
+          </span>
+        </div>
+
+        <div class="pokemon-abilities">
+          <p><strong>Habilidades:</strong></p>
+          <div class="abilities-list">
+            <span *ngFor="let ability of pokemon.abilities" class="ability-badge">
+              {{ capitalize(ability.ability.name) }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

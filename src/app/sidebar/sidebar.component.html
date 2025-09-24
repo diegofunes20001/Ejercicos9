@@ -1,0 +1,10 @@
+<div class="sidebar">
+  <ul class="menu-list">
+    <li *ngFor="let item of menuItems; let i = index"
+        [class.active]="item.active"
+        (click)="selectMenuItem(i)">
+      <span class="icon">{{ item.icon }}</span>
+      <span class="label">{{ item.label }}</span>
+    </li>
+  </ul>
+</div>
