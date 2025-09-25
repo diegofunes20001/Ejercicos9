@@ -8,6 +8,6 @@ import { SidebarComponent } from "./sidebar/sidebar.component";
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class AppComponent {
   protected readonly title = signal('Ejercicos9');
 }
